@@ -27,7 +27,7 @@ int knapsack(int W,int wt[],int val[],int n){
 int main(){
     int val[]={100,60,120};
     int wt[]={10,20,30};
-    int W=45;
+    int W=40;
     int n=sizeof(val)/sizeof(val[0]);
     cout<<knapsack(W,wt,val,n)<<endl;
 }
