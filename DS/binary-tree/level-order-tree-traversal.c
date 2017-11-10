@@ -1,7 +1,8 @@
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <stdlib.h>
 struct node{
     int data;
-    node *left,*right;
+    struct node *left,*right;
 };
 int height(struct node* root);
 void printGivenLevel(struct node* root,int current,int level);
@@ -20,9 +21,10 @@ void printGivenLevel(struct node* root,int current,int level){
     }
 }
 void printLevelOrder(struct node* root){
+    int i;
     int h=height(root);
     printf("height of tree is %d\n",h);
-    for(int i=0;i<=h;i++) printGivenLevel(root,0,i);
+    for(i=0;i<=h;i++) printGivenLevel(root,0,i);
 }
 
 struct node* newNode(int data){
@@ -49,4 +51,5 @@ int main(){
     root->right->right=newNode(5);
     printf("level order traversal of binary tree is \n");
     printLevelOrder(root);
+    printf("\n");
 }
