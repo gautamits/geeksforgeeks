@@ -17,22 +17,25 @@ struct node *newNode(int n){
     temp->data=n;
     return temp;
 }
-int isBST(node* root,node* min,node* max){
+bool isBST(node* root,node* l=NULL,node* r=NULL){
     if(root==NULL){
         return 1;
         //empty tree is BST
     }
-    if(root->data < min || root-> data > max){
+    if(l!=NULL and root->data < l->data){
         //violation
-        return 0;
+        return false;
     }
-    else return isBSTUtil(root->left,min,root->data-1) &&
-    isBSTUtil(root->right,root->data+1,max);
+    if(r!=NULL and root->data > r->data){
+        //violation
+        return false;
+    }
+    else return isBST(root->left,l,root) and
+    isBST(root->right,root,r);
 }
 
 int main(int argc,char** argv){
-    {
-      struct node *root = newNode(4);
+      node *root = newNode(4);
       root->left        = newNode(2);
       root->right       = newNode(5);
       root->left->left  = newNode(1);
@@ -42,6 +45,17 @@ int main(int argc,char** argv){
         printf("Is BST\n");
       else
         printf("Not a BST\n");
-      return 0;
-    }  
+
+
+    node *root2 = newNode(3);
+    root2->left        = newNode(2);
+    root2->right       = newNode(5);
+    root2->left->left  = newNode(1);
+    root2->left->right = newNode(4);
+    
+    if (isBST(root2))
+        cout << "Is BST\n";
+    else
+        cout << "Not a BST\n";
+      return 0; 
 }
