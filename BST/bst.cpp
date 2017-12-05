@@ -16,7 +16,7 @@ struct node *newNode(int n){
     temp->data=n;
     return temp;
 }
-struct node* insert(struct node* root,int n){
+struct node* insert(node* root,int n){
     if(root==NULL){
         root=newNode(n);
         return root;
@@ -29,20 +29,20 @@ struct node* insert(struct node* root,int n){
     }
     return root;
 }
-void inOrder(struct node *root){
+void inOrder(node *root){
     if(root==NULL) return;
     inOrder(root->left);
     cout<<root->data<<" ";
     inOrder(root->right);
 }
-void preOrder(struct node *root){
+void preOrder(node *root){
     if(root==NULL) return;
     cout<<root->data<<" ";
     preOrder(root->left);
     preOrder(root->right);
 
 }
-void postOrder(struct node *root){
+void postOrder(node *root){
     if(root==NULL) return;
     
     postOrder(root->left);
@@ -58,15 +58,19 @@ void range(int *array,int length,int start=0,int step=1){
         //array[i] = start+step;
     }
 }
-void printArray(int *arr,int n,int rev=0){
+void printArray(int *arr,int n,int rev=0,int step=1){
+    if(step==0){
+        cout<<"step cannot be zero\n";
+        return;
+    }
     if(rev == -1){
         //print in reverse
-        for(int i=n-1 ; i>=0 ; i--){
+        for(int i=n-1 ; i>=0 ; i-=step){
             cout<<arr[i]<<" ";
         } 
     }
     else{
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i+=step){
             cout<<arr[i]<<" ";
         }
     }
